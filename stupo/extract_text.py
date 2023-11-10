@@ -3,6 +3,10 @@ import re
 import fitz
 import openai
 import numpy as np
+from openai import OpenAI
+
+client = OpenAI(
+)
 
 pdf_path = './Lesefassung_BSc_Informatik-1-3.pdf'
 pdf_document = fitz.open(pdf_path)
@@ -28,7 +32,7 @@ for paragraph in paragraphs:
 
     underpoints = re.split(r"\(\d+\)", paragraph)
     for underpoint in underpoints:
-        response = openai.Embedding.create(
+        response = client.embeddings.create(
             input=underpoint.strip(),
             model="text-embedding-ada-002"
         )

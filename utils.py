@@ -1,5 +1,5 @@
 import numpy as np
-import openai
+from openai import OpenAI
 
 loaded = np.load('stupo/embeddings.npz')
 
@@ -7,8 +7,8 @@ loaded = np.load('stupo/embeddings.npz')
 loaded_dict = {key: loaded[key] for key in loaded}
 
 
-def get_stupo_info(question):
-    response = openai.Embedding.create(
+def get_stupo_info(question, client: OpenAI):
+    response = client.embeddings.create(
         input=question,
         model="text-embedding-ada-002"
     )
