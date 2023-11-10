@@ -40,6 +40,7 @@ def test_knobel_aufgaben(fun, rep=1):
 
     correct = 0
     for (i, (question, solution)) in enumerate(solutions.items()):
+        c = 0
         for _ in range(rep):
             sleep(3)
             pred = fun(question)
@@ -61,5 +62,6 @@ def test_knobel_aufgaben(fun, rep=1):
             res = response.choices[0].message.content.strip()
             if "KORREKT" in res:
                 correct += 1
-        print(f"Fortschritt: {i + 1}/{len(solutions)}")
+                c += 1
+        print(f"Fortschritt: {i + 1}/{len(solutions)}. Ergebnisse für dieses Rätsel: {c}/{rep}")
     print(f"Correct: {correct}/{len(solutions) * rep}")
