@@ -1,7 +1,5 @@
 from time import sleep
 
-import openai
-
 
 def test_get_capital(fun):
     solution = {'Deutschland': ["Berlin"], "Frankreich": ["Paris"], "Spanien": ["Madrid"], "Italien": ["Rom"],
@@ -26,7 +24,7 @@ def test_get_capital(fun):
     print(f"Correct: {correct}/{len(solution) * 3}")
 
 
-def test_knobel_aufgaben(fun, rep=1):
+def test_knobel_aufgaben(fun, client, rep=1):
     if rep > 5:
         print(" rep > 5 is not allowed.")
         return
@@ -45,7 +43,7 @@ def test_knobel_aufgaben(fun, rep=1):
             sleep(3)
             pred = fun(question)
 
-            response = openai.ChatCompletion.create(
+            response = client.chat.completions.create(
                 model="gpt-4-1106-preview",
                 messages=[
                     {
