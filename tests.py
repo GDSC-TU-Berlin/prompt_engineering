@@ -44,7 +44,7 @@ def test_knobel_aufgaben(fun, client, rep=1):
             sleep(3)
             pred = fun(question)
 
-            response = client.chat.completion.create(
+            response = client.chat.completions.create(
                 model="gpt-4-1106-preview",
                 messages=[
                     {
